@@ -22,26 +22,35 @@
     <body>
         <div class="container-fluid">
             <div id="app">
-                <form>
+                <form @submit.prevent="selectSong(lyric)">
                     <div class="form-group">
+                        <!--Add artist-->
                         <label for="inputArtist">Artist</label>
-                        <input type="text" class="form-control" id="inputArtist" aria-describedby="helpUser" placeholder="Enter Artist">
+                        <input type="text" class="form-control" id="inputArtist" aria-describedby="helpUser" placeholder="Enter Artist" v-model="artist">
                         <small id="helpUser" class="form-text text-muted">Enter the name of an Artist and Song Title to find the lyrics</small>
                     </div>
                     <div class="form-group">
-                        <label for"inputTitle">Song Title</label>
-                        <input type="text" class="form-control" id="inputSong" placeholder="Enter Song Title">
+                        <!--Add song title-->
+                        <label for="inputTitle">Song Title</label>
+                        <input type="text" class="form-control" id="inputSong" placeholder="Enter Song Title" v-model="song">
                     </div>
                     <button class="btn btn-primary" :disabled="loading" @click="loadLyrics">
                         <i class="fa fa-spinner fa-spin" v-if="loading"></i>
                         Load Lyrics
                     </button>
                 </form>
-                <p v-for="lyric in songs" :key="lyric.id" @click="selectSong(lyric)">
-                    {{lyric.artist}} - {{lyric.title}} {{lyric.content-length}}
+                <p>
+                    Lyrics: {{ lyric }}
                 </p>
             </div>
         </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-resource@1.3.4/dist/vue-resource.min.js"></script>
+        <script src="./main.js"></script>
     </body>
 </html>
 

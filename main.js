@@ -2,17 +2,18 @@ $(function () {
     const vm = new Vue({
         el: '#app',
         data: {
+            song: "",
+            artist: "",
             loading: false,
-            songs: [],
             lyric: null
         },
         methods: {
             loadLyrics(){
                 this.loading = true
 
-                this.$http.get('https://api.lyrics.ovh/v1/' + '#inputArtist' + '/' + '#inputSong')
+                this.$http.get('https://api.lyrics.ovh/v1/' + this.artist + '/' + this.song)
                     .then(resp => {
-                        this.songs = resp.body
+                        this.lyric = resp.body.lyrics
                         this.loading = false
                     })
             },
